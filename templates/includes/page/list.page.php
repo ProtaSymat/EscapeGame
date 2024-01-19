@@ -34,11 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 <body>
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
-      <div class="text-center text-white">
-        <h1 class="display-4 fw-bolder">Arriverez vous à tout répondre ?</h1>
-        <p class="lead fw-normal text-white-50 mb-0">Rejoignez l'équipe remplit de mystères</p>
-      </div>
-    </div>
+    <div class="text-center text-white"> <h1 class="display-4 fw-bolder">Nos Enigmes incroyables</h1> <p class="lead fw-normal text-white-50 mb-0">Découvrez une série d'énigmes élaborées pour tester votre logique, votre créativité et votre ténacité. Serez-vous à la hauteur?</p> </div>
     </div>
   </header>
   <section class="container py-5">
@@ -60,25 +56,40 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach($questions as $question): ?>
-                <tr>
-                    <td><?php echo $question['question']; ?></td>
-                    <td>
-                        <?php 
-                        $percentage = $questionController->calculateSuccessPercentage($question['id']); 
-                        echo $percentage . '%';
-                        ?>
-                    </td>
-                    <td class="d-flex flex-row text-end">
-                        <form method="post">
-                            <input type="hidden" name="id" value="<?php echo $question['id']; ?>">
-                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Supprimer</button>
-                        </form>
-                        <a class="btn btn-warning" href="./?page=answer&layout=html&id=<?php echo $question['id']; ?>"><i class="fa fa-pencil"></i> Répondre</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
+    <?php foreach($questions as $question): ?>
+        <tr>
+            <td><?php echo $question['question']; ?></td>
+            <td>
+                <?php 
+                $percentage = $questionController->calculateSuccessPercentage($question['id']); 
+                $difficulty = '';
+                $color = '';
+
+                if($percentage <= 10) {
+                    $difficulty = 'difficile';
+                    $color = 'red';
+                } elseif ($percentage <= 50) {
+                    $difficulty = 'moyen';
+                    $color = 'orange';
+                } else {
+                    $difficulty = 'facile';
+                    $color = 'green';
+                }
+
+                echo '<span style="color:'.$color.';">•</span>' . $percentage . '%' . '('.$difficulty.')';
+                ?>
+            </td>
+            <td class="d-flex flex-row text-end">
+            <button class="btn btn-info mx-1" id="copyButton<?php echo $question['id']; ?>" onclick="copyToClipboard('<?php echo $question['id']; ?>')"><i class="fa fa-copy"></i></button>
+            <a class="btn btn-warning mx-1" href="./?page=answer&layout=html&id=<?php echo $question['id']; ?>"><i class="fa fa-pencil"></i></a>
+            <form method="post" class="mx-1">
+                <input type="hidden" name="id" value="<?php echo $question['id']; ?>">
+                <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+            </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
     </table>
     <a href="./?page=enigme&layout=html" class="btn btn-success" role="button" aria-pressed="true">Créer son énigme</a>
 

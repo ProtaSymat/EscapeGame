@@ -7,6 +7,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="./?page=accueil&layout=html">Accueil</a></li>
                 <li class="nav-item"><a class="nav-link" href="./?page=list&layout=html">Nos Enigmes</a></li>
+                <li class="nav-item"><a class="nav-link" href="./?page=contact&layout=html">Contact</a></li>
             </ul>
         </div>
     </div>
