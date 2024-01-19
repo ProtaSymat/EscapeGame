@@ -7,7 +7,7 @@ $questionController = new QuestionController($database);
 $questions = $questionController->getQuestions();
 
 foreach ($questions as $key => $question) {
-    $percentage = $questionController->calculateSuccessPercentage($question['id']); 
+    $percentage = $questionController->pourcentage($question['id']); 
     $questions[$key]['success_rate'] = $percentage;
 }
 
@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
             <td><?php echo $question['question']; ?></td>
             <td>
                 <?php 
-                $percentage = $questionController->calculateSuccessPercentage($question['id']); 
+                $percentage = $questionController->pourcentage($question['id']); 
                 $difficulty = '';
                 $color = '';
 

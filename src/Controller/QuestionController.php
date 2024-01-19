@@ -23,11 +23,22 @@ class QuestionController {
         $this->database->table('questions')->post($data)->do();
         return $this->database->lastInsertId();
     }
+
+    function deleteQuestion($id) {
+        $stmt = $this->database->getConnexion()->prepare("DELETE FROM questions WHERE id=?");
+        $stmt->execute([$id]);
+    }
+
     function getQuestion($id){
         $stmt = $this->database->getConnexion()->prepare("SELECT * FROM questions WHERE id=?");
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
+    function getQuestions() {
+        $stmt = $this->database->getConnexion()->prepare("SELECT * FROM questions");
+        $stmt->execute();
+        return $stmt->fetchAll();
+  }
 
     function checkAnswer($id, $userAnswer){
         $stmt = $this->database->getConnexion()->prepare("SELECT * FROM questions WHERE id=?");
@@ -45,7 +56,7 @@ class QuestionController {
         }
     }
 
-    function calculateSuccessPercentage($id){
+    function pourcentage($id){
         $stmt = $this->database->getConnexion()->prepare("SELECT success_count, total_answers FROM questions WHERE id=?");
         $stmt->execute([$id]);
         $question = $stmt->fetch();
@@ -56,13 +67,5 @@ class QuestionController {
             return 0;
         }
     }
-    function getQuestions() {
-        $stmt = $this->database->getConnexion()->prepare("SELECT * FROM questions");
-        $stmt->execute();
-        return $stmt->fetchAll();
-  }
-  function deleteQuestion($id) {
-    $stmt = $this->database->getConnexion()->prepare("DELETE FROM questions WHERE id=?");
-    $stmt->execute([$id]);
-}
+
 }

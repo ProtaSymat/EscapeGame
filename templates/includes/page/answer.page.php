@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
 
 <p> Pourcentage de réussite de la question : 
 <?php 
-$percentage = $questionController->calculateSuccessPercentage($id);
+$percentage = $questionController->pourcentage($id);
 $difficulty = '';
 
 if($percentage <= 10) {
