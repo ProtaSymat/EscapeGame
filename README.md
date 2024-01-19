@@ -1,3 +1,4 @@
+Site live : http://193.70.0.177/EscapeGame/?page=accueil&layout=html
 # Projet D'EscapeGame avec utilisation de Composer
 
 Ce projet est basé sur un Framework PHP et utilise Composer comme gestionnaire de dépendances. Voici les instructions pour configurer et exécuter le projet.
