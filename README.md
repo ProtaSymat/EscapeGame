@@ -38,6 +38,7 @@ Changez "projet" par le nom du répertoire de votre projet.
 ### 4. Configuration du Serveur Web
 Configurez votre serveur web pour pointer vers le répertoire public/ du projet. Ceci va dépendre de votre serveur web. Voici un exemple pour Apache :
 
+```
 <VirtualHost *:80>
     DocumentRoot "/chemin/vers/projet/public"
     ServerName projet.local
@@ -48,6 +49,8 @@ Configurez votre serveur web pour pointer vers le répertoire public/ du projet.
         Allow from All
     </Directory>
 </VirtualHost>
+```
+
 N'oubliez pas d'ajouter une entrée dans votre fichier hosts si nécessaire :
 
 127.0.0.1 projet.local
