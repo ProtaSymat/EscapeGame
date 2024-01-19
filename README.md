@@ -18,21 +18,27 @@ Sur Windows, téléchargez et exécutez l'installateur de Composer.
 
 Sur macOS et Linux, exécutez les commandes suivantes dans votre terminal :
 
-
+```
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+```
 
 ### 2. Clonage du projet
 Clonez le projet dans votre répertoire local en utilisant git :
 
+```
 git clone https://github.com/user/projet.git
+```
 Changez "user/projet.git" par l'URL du dépôt du projet.
 
 ### 3. Installation des dépendances
 Accédez au répertoire du projet et installez les dépendances via Composer :
 
+```
 cd projet
 composer install
+```
+
 Changez "projet" par le nom du répertoire de votre projet.
 
 ### 4. Configuration du Serveur Web
